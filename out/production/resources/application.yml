@@ -32,6 +32,6 @@ datasource:
   flyway:
     jdbc-url: 'jdbc:h2:file:~/dasboot'
     url: 'jdbc:h2:file:~/dasboot'
-    username: invalid
+    username: sa
     password: ''
     driver-class-name: org.h2.Driver

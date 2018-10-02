@@ -1,7 +1,13 @@
 package com.boot.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Shipwreck {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
+
 	String name;
 	String description;
 	String condition;
