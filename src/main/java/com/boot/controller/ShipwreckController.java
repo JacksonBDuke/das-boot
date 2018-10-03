@@ -28,20 +28,22 @@ public class ShipwreckController {
 
     @GetMapping(value = "shipwrecks/{id}")
     public Shipwreck get(@PathVariable Long id) {
-        return shipwreckRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+//        return shipwreckRepository.findById(id).isPresent() ? shipwreckRepository.findById(id).get() : new Optional<Shipwreck>();
+        return shipwreckRepository.findById(id).get();
 //        return shipwreckRepository.getOne(id);
     }
 
     @PutMapping(value = "shipwrecks/{id}")
     public Shipwreck update(@PathVariable Long id, @RequestBody Shipwreck shipwreck) {
-        Shipwreck existingShipwreck = shipwreckRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+        Shipwreck existingShipwreck = shipwreckRepository.findById(id).get();
         BeanUtils.copyProperties(shipwreck, existingShipwreck);
         return shipwreckRepository.saveAndFlush(existingShipwreck);
     }
 
     @DeleteMapping(value = "shipwrecks/{id}")
     public Shipwreck delete(@PathVariable Long id) {
-        Shipwreck existingShipwreck = shipwreckRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+//        Shipwreck existingShipwreck = shipwreckRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+        Shipwreck existingShipwreck = shipwreckRepository.findById(id).get();
         shipwreckRepository.delete(existingShipwreck);
         return existingShipwreck;
     }
