@@ -15,6 +15,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ShipwreckControllerTest {
@@ -44,6 +45,9 @@ public class ShipwreckControllerTest {
         when(shipwreckRepository.findById(1L)).thenReturn(Optional.of(sw));
 
         Shipwreck wreck = sc.get(1L);
+
+        verify(shipwreckRepository).findById(1L);
+
         assertEquals(1L, wreck.getId().longValue());
     }
 }
